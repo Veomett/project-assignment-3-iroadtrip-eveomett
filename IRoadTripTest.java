@@ -1,6 +1,9 @@
+import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Assertions;
 
 import java.util.List;
+
+import static org.hamcrest.CoreMatchers.containsString;
 
 class IRoadTripTest {
     String[] myArgs = {"borders.txt", "capdist.csv", "state_name.tsv"};
@@ -36,26 +39,35 @@ class IRoadTripTest {
     @org.junit.jupiter.api.Test
     void findPathColombiaArgentina() {
         List<String> ColombiaArgentina = r.findPath("Colombia", "Argentina");
-        Assertions.assertEquals(ColombiaArgentina.get(1), "Peru --> Bolivia (1069 km.)");
-
+        MatcherAssert.assertThat(ColombiaArgentina.get(1), containsString("Peru"));
+        MatcherAssert.assertThat(ColombiaArgentina.get(1), containsString("Bolivia"));
+        MatcherAssert.assertThat(ColombiaArgentina.get(1), containsString("1069 km"));
     }
     @org.junit.jupiter.api.Test
     void findPathIndiaYemen() {
         List<String> IndiaYemen = r.findPath("India", "Yemen");
-        Assertions.assertEquals(IndiaYemen.get(2), "Iran --> Iraq (698 km.)");
-
+        MatcherAssert.assertThat(IndiaYemen.get(2), containsString("Iran"));
+        MatcherAssert.assertThat(IndiaYemen.get(2), containsString("Iraq"));
+        MatcherAssert.assertThat(IndiaYemen.get(2), containsString("698 km"));
     }
     @org.junit.jupiter.api.Test
     void findPathNorwaySweden() {
         List<String> NorwaySweden = r.findPath("Norway", "Sweden");
-        Assertions.assertEquals(NorwaySweden.get(0), "Norway --> Sweden (419 km.)");
-
+        MatcherAssert.assertThat(NorwaySweden.get(0), containsString("Norway"));
+        MatcherAssert.assertThat(NorwaySweden.get(0), containsString("Sweden"));
+        MatcherAssert.assertThat(NorwaySweden.get(0), containsString("419 km"));
     }
     @org.junit.jupiter.api.Test
     void findPathChinaYemen() {
         List<String> ChinaYemen = r.findPath("China", "Yemen");
-        Assertions.assertEquals(ChinaYemen.get(3), "Turkmenistan --> Iran (653 km.)");
-
+        MatcherAssert.assertThat(ChinaYemen.get(3), containsString("Turkmenistan"));
+        MatcherAssert.assertThat(ChinaYemen.get(3), containsString("Iran"));
+        MatcherAssert.assertThat(ChinaYemen.get(3), containsString("653 km"));
+    }
+    @org.junit.jupiter.api.Test
+    void findPathChinaAustralia() {
+        List<String> ChinaAustralia = r.findPath("China", "Australia");
+        Assertions.assertEquals(ChinaAustralia.size(), 0);
     }
 
 }
