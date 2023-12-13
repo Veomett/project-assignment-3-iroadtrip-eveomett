@@ -1,9 +1,8 @@
-import org.hamcrest.MatcherAssert;
+
 import org.junit.jupiter.api.Assertions;
 
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.containsString;
 
 class IRoadTripTest {
     String[] myArgs = {"borders.txt", "capdist.csv", "state_name.tsv"};
